@@ -1,0 +1,31 @@
+html {
+background-color: #9fa8da;
+}
+.container img{
+  margin: 0 auto;
+  padding: 3px
+}
+
+.logo-font{
+  font-family: 'Akronim', cursive;
+  font-size: 120px;
+  text-decoration: none;
+  color: black;
+}
+
+.hairImgs{
+  display: block;
+}
+
+a{
+  text-decoration: none;
+  color: gray;
+}
+
+.container form {
+  font-size: 30px;
+}
+
+.container label {
+  font-size: 20px;
+}
