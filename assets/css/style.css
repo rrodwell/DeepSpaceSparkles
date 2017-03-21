@@ -29,3 +29,22 @@ a{
 .container label {
   font-size: 20px;
 }
+.logo-font-results{
+  font-family: 'Akronim', cursive;
+  font-size: 80px;
+  text-decoration: none;
+  color: black;
+}
+
+.table-title{
+  padding: 10px;
+  font-size: 30px;
+}
+
+table a{
+  color: #a54d78;
+}
+
+.black-font{
+  color: black;
+}
