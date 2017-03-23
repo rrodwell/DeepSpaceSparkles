@@ -10,16 +10,21 @@
  var maxTemperature = 297.59;
 
 
- var config = {
-   apiKey: "AIzaSyB7C05zBpbSGSUEAabZFNOiUPjX0ZYM9xI",
-   authDomain: "beerme-73beb.firebaseapp.com",
-   databaseURL: "https://beerme-73beb.firebaseio.com",
-   storageBucket: "beerme-73beb.appspot.com",
-   messagingSenderId: "364897926231"
- };
- firebase.initializeApp(config);
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyASY7NBwl2uKMKjmaQ-docJJAEzhz0N4tg",
+    authDomain: "stylecast-be501.firebaseapp.com",
+    databaseURL: "https://stylecast-be501.firebaseio.com",
+    storageBucket: "stylecast-be501.appspot.com",
+    messagingSenderId: "911214775223"
+  };
+  firebase.initializeApp(config);
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 80a53355441f693f9df8feb0667d7c848ef3b6d5
 
 
 
@@ -133,6 +138,7 @@
      }
 
  });
+<<<<<<< HEAD
 
  //--------------Google Sign In ------------------//
 
@@ -246,3 +252,5 @@
           'Thanks for logging in, ' + response.name + '!';
       });
     }
+=======
+>>>>>>> 80a53355441f693f9df8feb0667d7c848ef3b6d5
