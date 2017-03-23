@@ -12,69 +12,50 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <!-- Firebase -->
       <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
-      <link href="https://fonts.googleapis.com/css?family=Akronim|Mouse+Memoirs" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
    </head>
    <body>
-     <div class="container">
-       <div class="row">
-          <div class="col m12 center">
-             <a href="index.html">
-                <div class="logo-font">Stylecast</div>
-             </a>
-             <img class="materialboxed" width="60" src="assets/images/bun1.png">
-<<<<<<< HEAD
-             <div class="col m12 center">
-                <form action="#">
+     <nav>
+        <div class="nav-wrapper z-depth-3 indigo lighten-4 col s12 m6 l6 hide-on-med-and-down">
+           <a href="#" class="brand-logo logo-font left" style="color: black;">Stylecast</a>
+           <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="#modal1">LOGIN</a></li>
+              <li><a href="#modal2">REGISTER</a></li>
+           </ul>
+        </div>
+        <div class="nav-wrapper indigo lighten-4 hide-on-med-and-up show-on-medium-and-down">
+          <a href="#" class="brand-logo logo-font left" style="color: black;">Stylecast</a>
+        <ul id="nav-mobile">
+           <li class="right"><a href="#modal1">LOGIN</a></li>
+           <li class="right"><a href="#modal2">REGISTER</a></li>
+        </ul>
+      </div>
+     </nav>
+      <div class="container" style="margin-top: 30px;">
+         <img class="materialboxed" width="80" src="assets/images/bun1.png">
+      </div>
+      <div class="container">
+      <div class="row">
+         <div class="col m12 center">
+            <form action="#">
+              <!-- <div>What is your location?</div>
+               <input name="group1" type="radio" id="answer1">
+               <label for="answer1" class="black-font">Yes</label>
+               <input name="group1" type="radio" id="answer2">
+               <label for="answer2" class="black-font">No</label> -->
 
-                 <label>First name: <input type="radio"></label><br>
+              <div>Do you have hair?</div>
+               <input name="group2" type="radio" id="answer3">
+               <label for="answer3" class="black-font">Yes</label>
+               <input name="group2" type="radio" id="answer4">
+               <label for="answer4" class="black-font">No</label>
+               <div class = "chooseHair"> </div>
+            </form>
 
-                  <div>Will you allow us to find your location in order to get your stylecast?</div>
-                  <input name="group1" type="radio" id="answer1">
-                  <label for="answer1">Yes</label>
-                  <input name="group1" type="radio" id="answer2">
-                  <label for="answer2">No</label>
-
-                   <div>Do you have hair?</div>
-                   <input name="group2" type="radio" id="answer3">
-                   <label for="answer3">Yes</label>
-                   <input name="group2" type="radio" id="answer4">
-                   <label for="answer4">No</label>
-
-
-                   <div>What type of hair do you have?</div>
-                   <label><img class="hairImgs" class="materialboxed" width="65px" src="curly1.png"><a href="#">Naturally Curly</a></label>
-                   <label><img class="hairImgs" class="materialboxed" width="60px" src="wavy1.png"><a href="#">Wavy</label></a>
-                   <label><img class="hairImgs" class="materialboxed" width="50px" src="straight1.png"><a href="#">Straight</a></label>
-
-                </form>
-             </div>
-          </div>
-       </div>
-    <script type="text/javascript" src="app.js"></script>
-=======
-          </div>
-          <div class="col m12 center">
-             <form action="#">
-               
-                <p>
-                <div>Do you have hair?</div>
-                <input name="group1" type="radio" id="test1"/>
-                <label for="answer1" id="yesButton">Yes</label>
-                <input name="group1" type="radio" id="test1"/>
-                <label for="answer2" id="noButton">No</label>
-                </p>
-                <p>
-                <div>What type of hair do you have?</div>
-                <label><img class="hairImgs" class="materialboxed" width="65px" src="assets/images/curly1.png" id="CurlyButton"><a href="#" >Naturally Curly</a></label>
-                <label><img class="hairImgs" class="materialboxed" width="60px" src="assets/images/wavy1.png" id="wavy"><a href="#"  >Wavy</label></a>
-                <label><img class="hairImgs" class="materialboxed" width="50px" src="assets/images/straight1.png"id="Straight"><a href="#" >Straight</a></label>
-                </p>
-             </form>
-          </div>
-       </div>
-    </div>
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
->>>>>>> 05d4cc60c14305d4e4df91bf242fb5b667748635
-    </body>
-    </html>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript" src="assets/javascript/app.js"></script>
+   </body>
+</html>
