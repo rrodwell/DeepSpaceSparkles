@@ -3,14 +3,21 @@ background-color: #9fa8da;
 }
 .container img{
   margin: 0 auto;
-  padding: 3px
+
 }
 
 .logo-font{
-  font-family: 'Akronim', cursive;
-  font-size: 120px;
+  margin-left: 40px;
+  font-family: 'Krona One', sans-serif;
   text-decoration: none;
   color: black;
+}
+
+.card{
+  font-size: 20px;
+  font-weight: bold;
+  opacity: .8;
+  margin: 50px;
 }
 
 .hairImgs{
@@ -22,6 +29,11 @@ a{
   color: gray;
 }
 
+.container td a{
+  color: #880e4f;
+  font-weight: bold;
+}
+
 .container form {
   font-size: 30px;
 }
@@ -29,6 +41,12 @@ a{
 .container label {
   font-size: 20px;
 }
+<<<<<<< HEAD
+
+.table-title{
+  font-size: 30px;
+}
+=======
 .logo-font-results{
   font-family: 'Akronim', cursive;
   font-size: 80px;
@@ -129,3 +147,4 @@ table a{
 .loginBtn--google:focus {
   background: #E74B37;
 }
+>>>>>>> 80a53355441f693f9df8feb0667d7c848ef3b6d5
