@@ -508,7 +508,7 @@ $( document ).on( 'click', '#doitLogin', function () {
       console.log('User signed out.');
     });
   }
-
+  
   //-----------Facebook Login----------------------//
   // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {

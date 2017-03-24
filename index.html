@@ -5,13 +5,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- google login -->
       <meta name="google-signin-client_id" content="676416527258-61om5nlj7brpvd563v0hcs5vbqcnd3k8.apps.googleusercontent.com">
-        <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://fierce-refuge-93939.herokuapp.com/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Stylecast"/>
-        <meta property="og:description" content="Weather forecast app to style your hair!" />
-        <meta property="og:image" content="https://image.freepik.com/free-icon/woman-with-long-hair_318-56970.jpg"/>
-        <!-- Title -->
+      <!-- Facebook Meta Tags -->
+      <meta property="og:url" content="https://sleepy-caverns-19209.herokuapp.com/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Stylecast"/>
+      <meta property="og:description" content="Weather forecast app to style your hair!" />
+      <meta property="og:image" content="https://image.freepik.com/free-icon/woman-with-long-hair_318-56970.jpg"/>
+      <!-- Title -->
       <title>Stylecast</title>
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -51,8 +51,9 @@
             <label for="password">password</label>
             <div>
               <!-- <div>Log-in with</div> -->
-              <a href="#" <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"><img src="facebook (2).png" alt="facebook" style="margin: 10px;"></a>
-              <a href="#"><img src="google-plus.png" alt="google" style="margin: 10px;" class="g-signin2" data-onsuccess="onSignIn"></a>
+              <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true">
+      		    </fb:login-button>
+              <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
          </div>
          <div class="modal-footer">
