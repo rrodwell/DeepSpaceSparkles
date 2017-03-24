@@ -1,47 +1,51 @@
 html {
-background-color: #9fa8da;
-}
-.container img{
-  margin: 0 auto;
-
+    background-color: #9fa8da;
 }
 
-.logo-font{
-  margin-left: 40px;
-  font-family: 'Krona One', sans-serif;
-  text-decoration: none;
-  color: black;
+.container img {
+    margin: 0 auto;
 }
 
-.card{
-  font-size: 20px;
-  font-weight: bold;
-  opacity: .8;
-  margin: 50px;
+.logo-font {
+    margin-left: 40px;
+    font-family: 'Krona One', sans-serif;
+    text-decoration: none;
+    color: black;
 }
 
-.hairImgs{
-  display: block;
+.card {
+    font-size: 20px;
+    font-weight: bold;
+    opacity: .8;
+    margin: 50px;
 }
 
-a{
-  text-decoration: none;
-  color: gray;
+.hairImgs {
+    display: block;
 }
 
-.container td a{
-  color: #880e4f;
-  font-weight: bold;
+a {
+    text-decoration: none;
+    color: gray;
+}
+
+.container td a {
+    color: #880e4f;
+    font-weight: bold;
 }
 
 .container form {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 .container label {
-  font-size: 20px;
+    font-size: 20px;
 }
 
-.table-title{
-  font-size: 30px;
+.table-title {
+    font-size: 30px;
+}
+
+.fb-login-button {
+    padding: 0 30px;
 }
