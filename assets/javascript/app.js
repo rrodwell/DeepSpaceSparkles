@@ -575,6 +575,7 @@ $(document).ready(function() {
                 window.location.href = 'hairQuestions.html';
             }
         });
+});
 
     //--------------Google Sign In ------------------//
 
@@ -678,4 +679,3 @@ $(document).ready(function() {
                 'Thanks for logging in, ' + response.name + '!';
         });
     };
-});
