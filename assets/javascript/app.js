@@ -35,15 +35,12 @@ function ipMan(id, password){
 database.ref("userInput").on("value", function(snapshot) {
     var dataStorage = snapshot.val();
     console.log(dataStorage);
-    if(dataStorage != null){
+    if(dataStorage != null) {
        var keyG = Object.keys(dataStorage);
         for(var i = 0 ; i < keyG.length ; i++){
         var infoMan = new ipMan (dataStorage[keyG[i]].emailC , dataStorage[keyG[i]].passwordC);
         idpasswordS.push(infoMan);
-
         }
-
-
     }
     /*
     if(dataUpdate != null){
@@ -175,7 +172,7 @@ database.ref("userInput").on("value", function(snapshot) {
                console.log("Wind Speed: " + response.wind.speed);
                console.log("Humidity: " + response.main.humidity);
                console.log("Temperature (F): " + response.main.temp);
-               window.location.href='result.html';
+               window.location.href='results.html';
 
              });
 
@@ -436,7 +433,6 @@ $( document ).on( 'click', '#doitLogin', function () {
 
    if(conditionCheking == 0){
      checkingID = true;
-
    }
 
 
@@ -445,7 +441,7 @@ $( document ).on( 'click', '#doitLogin', function () {
 
               console.log("there is no uesrInput");
 
-         }else{
+         } else {
             for( var i = 0  ; i < idpasswordS.length; i++){
                if(emailCheck == idpasswordS[i].email)
                checkingI = true ;
@@ -453,23 +449,19 @@ $( document ).on( 'click', '#doitLogin', function () {
                chekcingP = true ;
                console.log("There is same ID");
             }
-
          }
+    }
 
-
-
-
+   if(checkingI  == true && chekcingP == true ){
+      window.location.href='hairQuestions.html';
    }
-
-  if(checkingI  == true && chekcingP == true ){
-
-            window.location.href='hairQuestions.html';
-
-  }
 
 
 
  });
+
+
+
 
  //--------------Google Sign In ------------------//
 
@@ -538,40 +530,40 @@ $( document ).on( 'click', '#doitLogin', function () {
     }
 
     window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1117802821682653',
-      cookie     : true,  // enable cookies to allow the server to access
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.8' // use graph api version 2.8
-    });
+      FB.init({
+        appId      : '1117802821682653',
+        cookie     : true,  // enable cookies to allow the server to access
+                            // the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.8' // use graph api version 2.8
+      });
 
-    // Now that we've initialized the JavaScript SDK, we call
-    // FB.getLoginStatus().  This function gets the state of the
-    // person visiting this page and can return one of three states to
-    // the callback you provide.  They can be:
-    //
-    // 1. Logged into your app ('connected')
-    // 2. Logged into Facebook, but not your app ('not_authorized')
-    // 3. Not logged into Facebook and can't tell if they are logged into
-    //    your app or not.
-    //
-    // These three cases are handled in the callback function.
+      // Now that we've initialized the JavaScript SDK, we call
+      // FB.getLoginStatus().  This function gets the state of the
+      // person visiting this page and can return one of three states to
+      // the callback you provide.  They can be:
+      //
+      // 1. Logged into your app ('connected')
+      // 2. Logged into Facebook, but not your app ('not_authorized')
+      // 3. Not logged into Facebook and can't tell if they are logged into
+      //    your app or not.
+      //
+      // These three cases are handled in the callback function.
 
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
 
     };
 
     // Load the SDK asynchronously
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    // (function(d, s, id) {
+    //   var js, fjs = d.getElementsByTagName(s)[0];
+    //   if (d.getElementById(id)) return;
+    //   js = d.createElement(s); js.id = id;
+    //   js.src = "//connect.facebook.net/en_US/sdk.js";
+    //   fjs.parentNode.insertBefore(js, fjs);
+    // }(document, 'script', 'facebook-jssdk'));
 
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
@@ -579,7 +571,7 @@ $( document ).on( 'click', '#doitLogin', function () {
       console.log('Welcome!  Fetching your information.... ');
       FB.api('/me', function(response) {
         console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML =
-          'Thanks for logging in, ' + response.name + '!';
+        document.getElementById('status').innerHTML = ('Thanks for logging in, ' + response.name + '!');
       });
-    }
+    };
+  });
