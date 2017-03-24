@@ -97,6 +97,11 @@
                      <p>The app that gives you all the information you need to keep your hair looking great no matter what the weather has in store.</p>
                   </div>
                </div>
+               <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+       				<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true">
+       		    </fb:login-button>
+       		    <div id="status"></div>
             </div>
          </div>
       </div>
