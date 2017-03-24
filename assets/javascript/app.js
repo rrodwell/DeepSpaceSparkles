@@ -29,7 +29,7 @@ function ipMan(id, password) {
 
 
 
-
+/*
 database.ref("userInput").on("value", function(snapshot) {
     var dataStorage = snapshot.val();
     console.log(dataStorage);
@@ -59,12 +59,11 @@ database.ref("userInput").on("value", function(snapshot) {
              }else{
                console.log("There is same ID !");
              }
-    */
 
 }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
-
+*/
 
 function generateResult() {
 
