@@ -64,6 +64,50 @@ database.ref("userInput").on("value", function(snapshot) {
 
 
 
+            if(sameID = false){
+              database.ref("userInput").push({
+              emailC : emailCheck ,
+              passwordC : passewordCon
+              });
+
+
+             }else{
+               console.log("There is same ID !");
+
+             }
+
+    */
+
+}, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+});
+
+
+
+
+
+
+   function generateResult(){
+
+
+
+     database.ref("HairMan").on("value", function(snapshot) {
+     var dataList = snapshot.val();
+
+     console.log(dataList.humidity);
+
+     $("#humiditySection").html(dataList.humidity+"%");
+     $("#tempSection").html(dataList.temperature);
+     $("#windspdSection").html(dataList.wind);
+
+
+    }, function(errorObject) {
+        console.log("Errors handled: " + errorObject.code);
+    });
+
+
+
+   }
 
 
 
@@ -73,17 +117,10 @@ database.ref("userInput").on("value", function(snapshot) {
 
          // API key for open weather
            var code = "";
-<<<<<<< HEAD
 
            var testHuidity = Humidity;
 
 
-=======
-
-           var testHuidity = Humidity;
-
-           //console.log(Humidity);
->>>>>>> seanfix
            var APIKey = "da2fd5126cda625878969d8aa3d25d93";
 
            navigator.geolocation.getCurrentPosition(function(position) {
@@ -105,12 +142,6 @@ database.ref("userInput").on("value", function(snapshot) {
              .done(function(response) {
 
 
-<<<<<<< HEAD
-=======
-
-
-               console.log(response);
->>>>>>> seanfix
                if(response.main.humidity > testHuidity   ){
                code = code + "H";}
                else{code = code + "X";}
@@ -130,8 +161,6 @@ database.ref("userInput").on("value", function(snapshot) {
                code = code + "2";
                }
 
-<<<<<<< HEAD
-=======
                database.ref("HairMan").set({
                humidity : response.main.humidity ,
                wind : response.wind.speed ,
@@ -140,7 +169,6 @@ database.ref("userInput").on("value", function(snapshot) {
                test : "hi"
                });
 
->>>>>>> seanfix
 
                console.log("code : " + code );
                // Log the data in the console as well
@@ -197,28 +225,11 @@ database.ref("userInput").on("value", function(snapshot) {
    }
 
 
-<<<<<<< HEAD
-   baldTest = false ;
-   console.log(baldTest );
-=======
->>>>>>> seanfix
+
 
  });
   $( document ).on( 'click', '#answer4', function () {
    console.log("I am so sorry....... ");
-<<<<<<< HEAD
-    baldTest = true ;
-    console.log(baldTest );
-
- });
-
-   $( document ).on( 'click', '#CurlyButton', function () {
-    if( baldTest == false ){
-     mainTask(40);
-    }else{
-     alert("You are bald. So you don't need my advice! ");
-    }
-=======
    $(".chooseHair").html("I am so sorry but you are bald. Why should you need us?");
 
 
@@ -228,20 +239,13 @@ database.ref("userInput").on("value", function(snapshot) {
    $( document ).on( 'click', '.CurlyButton', function () {
 
      mainTask(35);
->>>>>>> seanfix
 
 
  });
     $( document ).on( 'click', '.wavyButton', function () {
 
      mainTask(50);
-<<<<<<< HEAD
-    }else{
-     alert("You are bald. So you don't need my advice! ");
-    }
-=======
 
->>>>>>> seanfix
 
 
  });
@@ -465,7 +469,6 @@ $( document ).on( 'click', '#doitLogin', function () {
 
 
 
-<<<<<<< HEAD
  });
 
  //--------------Google Sign In ------------------//
@@ -580,6 +583,3 @@ $( document ).on( 'click', '#doitLogin', function () {
           'Thanks for logging in, ' + response.name + '!';
       });
     }
-=======
-});
->>>>>>> seanfix
