@@ -1,3 +1,4 @@
+
 // Initialize Firebase
  var fStandard = 273.15;
  var windPower = 0 ;
@@ -8,16 +9,60 @@
  var baldTest =false;
  var minTemperature = 285.95;
  var maxTemperature = 297.59;
-
-
- var config = {
-   apiKey: "AIzaSyB7C05zBpbSGSUEAabZFNOiUPjX0ZYM9xI",
-   authDomain: "beerme-73beb.firebaseapp.com",
-   databaseURL: "https://beerme-73beb.firebaseio.com",
-   storageBucket: "beerme-73beb.appspot.com",
-   messagingSenderId: "364897926231"
- };
+ var hairQuestion = ["Naturally Curly", "Wavy", "Straight"] ;
+ var img_url = ["assets/images/curly1.png", "assets/images/wavy1.png", "assets/images/straight1.png"];
+ var imgClass = ["CurlyButton" , "wavyButton", "StraightButton"];
+  var config = {
+    apiKey: "AIzaSyC6o7t2PclsAkkXhFu4AklfNy1DqacBrT0",
+    authDomain: "firstproject-7e549.firebaseapp.com",
+    databaseURL: "https://firstproject-7e549.firebaseio.com",
+    storageBucket: "firstproject-7e549.appspot.com",
+    messagingSenderId: "741139754501"
+  };
  firebase.initializeApp(config);
+var database = firebase.database();
+var idpasswordS= [] ;
+
+function ipMan(id, password){
+  this.email = id;
+  this.pass = password;
+
+}
+
+
+
+
+database.ref("userInput").on("value", function(snapshot) {
+    var dataStorage = snapshot.val();
+    console.log(dataStorage);
+    if(dataStorage != null){
+       var keyG = Object.keys(dataStorage);
+        for(var i = 0 ; i < keyG.length ; i++){
+        var infoMan = new ipMan (dataStorage[keyG[i]].emailC , dataStorage[keyG[i]].passwordC);
+        idpasswordS.push(infoMan);
+
+        }
+
+
+    }
+    /*
+    if(dataUpdate != null){
+         var keyG = Object.keys(dataUpdate);
+         for(var i = 0 ; i < keyG.length ; i++){
+         console.log(email == dataUpdate[keyG[i]].emailC);
+         if( email == dataUpdate[keyG[i]].emailC ){
+             samID = true;
+           }
+
+
+        }
+
+            }
+
+
+
+
+
 
 
 
@@ -28,10 +73,17 @@
 
          // API key for open weather
            var code = "";
+<<<<<<< HEAD
 
            var testHuidity = Humidity;
 
 
+=======
+
+           var testHuidity = Humidity;
+
+           //console.log(Humidity);
+>>>>>>> seanfix
            var APIKey = "da2fd5126cda625878969d8aa3d25d93";
 
            navigator.geolocation.getCurrentPosition(function(position) {
@@ -53,6 +105,12 @@
              .done(function(response) {
 
 
+<<<<<<< HEAD
+=======
+
+
+               console.log(response);
+>>>>>>> seanfix
                if(response.main.humidity > testHuidity   ){
                code = code + "H";}
                else{code = code + "X";}
@@ -72,17 +130,33 @@
                code = code + "2";
                }
 
+<<<<<<< HEAD
+=======
+               database.ref("HairMan").set({
+               humidity : response.main.humidity ,
+               wind : response.wind.speed ,
+               temperature : response.main.temp,
+               codeMan : code,
+               test : "hi"
+               });
+
+>>>>>>> seanfix
 
                console.log("code : " + code );
                // Log the data in the console as well
                console.log("Wind Speed: " + response.wind.speed);
                console.log("Humidity: " + response.main.humidity);
                console.log("Temperature (F): " + response.main.temp);
+               window.location.href='result.html';
+
              });
 
 
 
            });
+
+
+
 
    }
    $(document).ready(function() {
@@ -93,15 +167,46 @@
        $("#index-card").show(1000);
 
 
- $( document ).on( 'click', '#yesButton', function () {
+ $( document ).on( 'click', '#answer3', function () {
    console.log("Choose Your Hairstyle");
+   $(".chooseHair").html("What type of hair do you have?");
 
+
+   for( var i = 0 ; i < 3 ; i++){
+       var space = $("<div>");
+       var letter = $("<p>");
+       var inputforP = hairQuestion[i];
+       letter.text(inputforP);
+       letter.addClass("col m12 center");
+       letter.addClass("materialboxed");
+       letter.addClass("ArrangeMan");
+       letter.css("fontSize", 20);
+       var imgFile = $("<img>");
+       imgFile.attr('src', img_url[i]);
+       imgFile.attr('height', '65px');
+       imgFile.attr('width', '50px');
+       imgFile.addClass(imgClass[i]);
+       space.append(imgFile);
+       space.addClass("SecondA");
+       space.append(letter);
+
+       $(".chooseHair").append( space);
+
+
+
+   }
+
+
+<<<<<<< HEAD
    baldTest = false ;
    console.log(baldTest );
+=======
+>>>>>>> seanfix
 
  });
-  $( document ).on( 'click', '#noButton', function () {
+  $( document ).on( 'click', '#answer4', function () {
    console.log("I am so sorry....... ");
+<<<<<<< HEAD
     baldTest = true ;
     console.log(baldTest );
 
@@ -113,25 +218,254 @@
     }else{
      alert("You are bald. So you don't need my advice! ");
     }
+=======
+   $(".chooseHair").html("I am so sorry but you are bald. Why should you need us?");
+
 
 
  });
-    $( document ).on( 'click', '#wavy', function () {
-     if( baldTest == false ){
+
+   $( document ).on( 'click', '.CurlyButton', function () {
+
+     mainTask(35);
+>>>>>>> seanfix
+
+
+ });
+    $( document ).on( 'click', '.wavyButton', function () {
+
      mainTask(50);
+<<<<<<< HEAD
     }else{
      alert("You are bald. So you don't need my advice! ");
     }
+=======
+
+>>>>>>> seanfix
 
 
  });
-     $( document ).on( 'click', '#Straight', function () {
+     $( document ).on( 'click', '.StraightButton', function () {
+
+     mainTask(40);
+
+     /*
      if( baldTest == false ){
      mainTask(40);
+     baldTest == true;
      }else{
      alert("You are bald. So you don't need my advice! ");
      }
+    */
+ });
 
+
+
+var images = ["assets/images/sunny1.png", "assets/images/rainy1.png", "assets/images/windy1.png", "assets/images/snowy1.png"];
+// Variable showImage will hold the setInterval when we start the slideshow
+var showImage;
+// Count will keep track of the index of the currently displaying picture.
+var count = 0;
+// This function will replace display whatever image it's given
+// in the 'src' attribute of the img tag.
+function displayImage() {
+  $("#image-holder").html("<img src=" + images[count] + " height='100px'>");
+}
+function nextImage() {
+  //Increment the count by 1.
+  count++;
+
+  // TODO: Use a setTimeout to run displayImage after 1 second.
+  setTimeout(displayImage, 1000);
+  // TODO: If the count is the same as the length of the image array, reset the count to 0.
+  if (count === images.length) {
+    count = 0;
+  }
+}
+function startSlideshow() {
+  // TODO: Use showImage to hold the setInterval to run nextImage.
+  showImage = setInterval(nextImage, 1000);
+}
+startSlideshow();
+//on click function for modals
+$(document).ready(function(){
+  $("#modal1").modal();
+  $("#modal2").modal();
+});
+
+
+
+
+generateResult();
+
+
+var images = ["assets/images/sunny1.png", "assets/images/rainy1.png", "assets/images/windy1.png", "assets/images/snowy1.png"];
+// Variable showImage will hold the setInterval when we start the slideshow
+var showImage;
+// Count will keep track of the index of the currently displaying picture.
+var count = 0;
+// This function will replace display whatever image it's given
+// in the 'src' attribute of the img tag.
+function displayImage() {
+  $("#image-holder").html("<img src=" + images[count] + " height='100px'>");
+}
+function nextImage() {
+  //Increment the count by 1.
+  count++;
+
+  // TODO: Use a setTimeout to run displayImage after 1 second.
+  setTimeout(displayImage, 1000);
+  // TODO: If the count is the same as the length of the image array, reset the count to 0.
+  if (count === images.length) {
+    count = 0;
+  }
+}
+function startSlideshow() {
+  // TODO: Use showImage to hold the setInterval to run nextImage.
+  showImage = setInterval(nextImage, 1000);
+}
+startSlideshow();
+//on click function for modals
+$(document).ready(function(){
+  $("#modal1").modal();
+  $("#modal2").modal();
+});
+
+
+function checkingMan(email, password) {
+        var checkingCondition = 0;
+
+        if(email == "")  checkingCondition = 1;
+        if(password == "")  checkingCondition = 2;
+        if((email == "") && (password == "") )  checkingCondition = 3;
+
+
+
+       return checkingCondition;
+
+
+}
+
+
+
+$( document ).on( 'click', '#registerMan', function () {
+  //TrainNamen = $("#Train-Name").val().trim();
+  //console.log("hi");
+   console.log(idpasswordS)
+   //console.log(idpasswordS.length);
+   var checkingID = false;
+   var noSameID = true;
+   event.preventDefault();
+   var emailCheck=  $("#emailR").val().trim();
+   console.log(emailCheck);
+
+   var passewordCon = $("#passwordR").val().trim();
+   console.log(passewordCon);
+
+   var conditionCheking = checkingMan(emailCheck, passewordCon);
+   console.log(conditionCheking);
+
+
+   if(conditionCheking == 0){
+     checkingID = true;
+
+   }
+
+
+   if(checkingID = true){
+         if (idpasswordS.length == 0){
+           database.ref("userInput").push({
+                                           emailC : emailCheck ,
+                                           passwordC : passewordCon
+                                            });
+           window.location.href='hairQuestions.html';
+
+
+         }else{
+            for( var i = 0  ; i < idpasswordS.length; i++){
+               if(emailCheck == idpasswordS[i].email)
+               noSameID = false ;
+               console.log("There is same ID");
+            }
+
+         }
+
+
+
+
+   }
+
+  if(noSameID == true && conditionCheking == 0 ){
+            database.ref("userInput").push({
+                                           emailC : emailCheck ,
+                                           passwordC : passewordCon
+                                            });
+            window.location.href='hairQuestions.html';
+
+  }
+
+
+
+});
+
+
+
+
+$( document ).on( 'click', '#doitLogin', function () {
+  //TrainNamen = $("#Train-Name").val().trim();
+  //console.log("hi");
+   console.log(idpasswordS)
+   //console.log(idpasswordS.length);
+   var checkingID = false;
+   var checkingI = false;
+   var chekcingP = false;
+   event.preventDefault();
+   var emailCheck=  $("#emailL").val().trim();
+   console.log(emailCheck);
+
+   var passewordCon = $("#passwordL").val().trim();
+   console.log(passewordCon);
+
+   var conditionCheking = checkingMan(emailCheck, passewordCon);
+   console.log(conditionCheking);
+
+
+   if(conditionCheking == 0){
+     checkingID = true;
+
+   }
+
+
+   if(checkingID = true){
+         if (idpasswordS.length == 0){
+
+              console.log("there is no uesrInput");
+
+         }else{
+            for( var i = 0  ; i < idpasswordS.length; i++){
+               if(emailCheck == idpasswordS[i].email)
+               checkingI = true ;
+               if(passewordCon == idpasswordS[i].pass)
+               chekcingP = true ;
+               console.log("There is same ID");
+            }
+
+         }
+
+
+
+
+   }
+
+  if(checkingI  == true && chekcingP == true ){
+
+            window.location.href='hairQuestions.html';
+
+  }
+
+
+
+<<<<<<< HEAD
  });
 
  //--------------Google Sign In ------------------//
@@ -246,3 +580,6 @@
           'Thanks for logging in, ' + response.name + '!';
       });
     }
+=======
+});
+>>>>>>> seanfix
