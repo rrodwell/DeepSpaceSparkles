@@ -39,26 +39,7 @@ database.ref("userInput").on("value", function(snapshot) {
             idpasswordS.push(infoMan);
         }
     }
-    /*
-    if(dataUpdate != null){
-         var keyG = Object.keys(dataUpdate);
-         for(var i = 0 ; i < keyG.length ; i++){
-         console.log(email == dataUpdate[keyG[i]].emailC);
-         if( email == dataUpdate[keyG[i]].emailC ){
-             samID = true;
-           }
-        }
-            }
-            if(sameID = false){
-              database.ref("userInput").push({
-              emailC : emailCheck ,
-              passwordC : passewordCon
-              });
 
-             }else{
-               console.log("There is same ID !");
-             }
-    */
 }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
@@ -73,6 +54,49 @@ function generateResult() {
       $("#humiditySection").html(dataList.humidity + "%");
       $("#tempSection").html(dataList.temperature);
       $("#windspdSection").html(dataList.wind);
+      
+      var humidityDesc = "";
+      if (dataList.hairType == 35) {
+          if (dataList.humidity < 0.35) {
+              humidityDesc = "Looks like the humidity is just right to keep your hair from puffing up like a blowfish.";
+          } else {
+              humidityDesc = "Looks like the humidity is a little high for your texture. If you got a blowout recently you better grab your favorite pashmina and make like an old Russian Orthodox lady. Otherwise today is a great day to try a cute bun or a braid.";
+          }
+      }
+      
+      if (dataList.hairType == 50) {
+          if (dataList.humidity < 0.5) {
+              humidityDesc = "The humidity today is just right to keep any style your heart desires.";
+          } else {
+              humidityDesc = "The humidity is a little high today. If your hair frizzes easily you might want to try an anti humectant.";
+          }
+      }
+      
+      if (dataList.hairType == 40) {
+          if (dataList.humidity < 0.5) {
+              humidityDesc = "The humidity is just right for your hair today. Try some curls or waves.";
+          } else {
+              humidityDesc = "The humidity is bit high for your hair. You know barrel curls will not be hanging around today. Might be a good day to embrace your straight hair or even try a messy bun.";
+          }
+      }
+      
+      if (dataList.wind < 10) {
+          windDesc = "The wind today seems just right.";
+      } else {
+          windDesc = "The wind will try your patience today. Don't forget a hair tie.";
+      }
+      
+      if (dataList.temperature < 55) {
+          tempDesc = "The temperature is cold today but it shouldn't be a problem for your style, unless we have a beanie situation. Just try not to keep it on too long. ";
+      } else if (dataList.temperature < 76) {
+          tempDesc = "The temperature is very nice today.";
+      } else {
+          tempDesc = "The temperature will be pretty warm today. Sweat might mess with your style. Try and stay cool or maybe try a cute updo!";
+      }
+      
+      $("#humidityDesc").html(humidityDesc);
+      $("#windDesc").html(windDesc);
+      $("#tempDesc").html(tempDesc);
 
   }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
@@ -82,75 +106,46 @@ function generateResult() {
 
 
 
-function mainTask(Humidity){
-//var wCondition = ["shower rain", "rain" , "thunderstorm" , "snow" , "mist" ,"clear sky", "few clouds","scattered clouds", "broken clouds"];
 
-   // API key for open weather
+
+ function mainTask(hairType) {
+     //var wCondition = ["shower rain", "rain" , "thunderstorm" , "snow" , "mist" ,"clear sky", "few clouds","scattered clouds", "broken clouds"];
+     // API key for open weather
      var code = "";
-
-     var testHuidity = Humidity;
-
 
      var APIKey = "da2fd5126cda625878969d8aa3d25d93";
 
      navigator.geolocation.getCurrentPosition(function(position) {
 
+       console.log(position);
+       var lat = position.coords.latitude;
+       var lng = position.coords.longitude;
 
-      console.log(position);
-      var lat = position.coords.latitude;
-      var lng = position.coords.longitude;
+       // Here we are building the URL we need to query the database
+       var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey+ "&units=imperial";
+       // Here we run our AJAX call to the OpenWeatherMap API
+       $.ajax({
+               url: queryURL,
+               method: "GET"
+           })
+           // We store all of the retrieved data inside of an object called "response"
+           .done(function(response) {
 
-
-     // Here we are building the URL we need to query the database
-     var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid="+APIKey;
-     // Here we run our AJAX call to the OpenWeatherMap API
-     $.ajax({
-         url: queryURL,
-         method: "GET"
-       })
-       // We store all of the retrieved data inside of an object called "response"
-       .done(function(response) {
-
-
-         if(response.main.humidity > testHuidity   ){
-         code = code + "H";}
-         else{code = code + "X";}
-
-
-
-         if(response.wind.speed > WindStandard  ){
-         code = code + "W";}
-         else{code = code + "N";}
-
-
-         if(response.main.temp < minTemperature  ){
-         code = code + "1";
-         }else if ( response.main.temp > maxTemperature){
-         code = code + "3";
-         }else{
-         code = code + "2";
-         }
-
-         database.ref("HairMan").set({
-         humidity : response.main.humidity ,
-         wind : response.wind.speed ,
-         temperature : response.main.temp,
-         codeMan : code,
-         test : "hi"
-         });
-
-
-         console.log("code : " + code );
-         // Log the data in the console as well
-         console.log("Wind Speed: " + response.wind.speed);
-         console.log("Humidity: " + response.main.humidity);
-         console.log("Temperature (F): " + response.main.temp);
-         window.location.href='results.html';
-
+               database.ref("HairMan").set({
+                   humidity: response.main.humidity,
+                   wind: response.wind.speed,
+                   temperature: response.main.temp,
+                   hairType: hairType
+               });
+               console.log("code : " + code);
+               // Log the data in the console as well
+               console.log("Wind Speed: " + response.wind.speed);
+               console.log("Humidity: " + response.main.humidity);
+               console.log("Temperature (F): " + response.main.temp);
+               console.log("Hair Type: " + response.main.hairType);
+               window.location.href = 'results.html';
+           });
        });
-
-     });
-
 }
 
 $(document).ready(function() {
@@ -160,262 +155,72 @@ $(document).ready(function() {
    $("#index-card").hide();
    $("#index-card").show(1000);
 
+   $(document).on('click', '#answer3', function() {
+       console.log("Choose Your Hairstyle");
+       $(".chooseHair").html("What type of hair do you have?");
 
-   $( document ).on( 'click', '#answer3', function () {
-      console.log("Choose Your Hairstyle");
-      $(".chooseHair").html("What type of hair do you have?");
+       for (var i = 0; i < 3; i++) {
+           var space = $("<div>");
+           var letter = $("<p>");
+           var inputforP = hairQuestion[i];
+           letter.text(inputforP);
+           letter.addClass("col m12 center");
+           letter.addClass("materialboxed");
+           letter.addClass("ArrangeMan");
+           letter.css("fontSize", 20);
+           var imgFile = $("<img>");
+           imgFile.attr('src', img_url[i]);
+           imgFile.attr('height', '65px');
+           imgFile.attr('width', '50px');
+           imgFile.addClass(imgClass[i]);
+           space.append(imgFile);
+           space.addClass("SecondA");
+           space.append(letter);
 
-
-      for( var i = 0 ; i < 3 ; i++){
-         var space = $("<div>");
-         var letter = $("<p>");
-         var inputforP = hairQuestion[i];
-         letter.text(inputforP);
-         letter.addClass("col m12 center");
-         letter.addClass("materialboxed");
-         letter.addClass("ArrangeMan");
-         letter.css("fontSize", 20);
-         var imgFile = $("<img>");
-         imgFile.attr('src', img_url[i]);
-         imgFile.attr('height', '65px');
-         imgFile.attr('width', '50px');
-         imgFile.addClass(imgClass[i]);
-         space.append(imgFile);
-         space.addClass("SecondA");
-         space.append(letter);
-
-         $(".chooseHair").append( space);
-     };
+           $(".chooseHair").append(space);
+       }
    });
 
-    $( document ).on( 'click', '#answer4', function () {
+   $(document).on('click', '#answer4', function() {
        console.log("I am so sorry....... ");
-       $(".chooseHair").html("I am so sorry but you are bald. Why should you need us?");
-     });
-
-
-   $( document ).on( 'click', '.CurlyButton', function () {
-     mainTask(35);
+       $(".chooseHair").html("Try a hat.");
    });
 
-   $( document ).on( 'click', '.wavyButton', function () {
-     mainTask(50);
+   $(document).on('click', '.CurlyButton', function() {
+       mainTask(35);
    });
 
-    $( document ).on( 'click', '.StraightButton', function () {
-      mainTask(40);
+   $(document).on('click', '.wavyButton', function() {
+       mainTask(50);
+   });
 
-     /*
-     if( baldTest == false ){
-     mainTask(40);
-     baldTest == true;
-     }else{
-     alert("You are bald. So you don't need my advice! ");
-     }
-    */
-    });
+   $(document).on('click', '.StraightButton', function() {
+       mainTask(40);
 
+   });
 
+   var images = ["assets/images/sunny1.png", "assets/images/rainy1.png", "assets/images/windy1.png", "assets/images/snowy1.png"];
+   // Variable showImage will hold the setInterval when we start the slideshow
+   var showImage;
+   // Count will keep track of the index of the currently displaying picture.
+   var count = 0;
+   // This function will replace display whatever image it's given
+   // in the 'src' attribute of the img tag.
+   function displayImage() {
+       $("#image-holder").html("<img src=" + images[count] + " height='100px'>");
+   }
 
-    var images = ["assets/images/sunny1.png", "assets/images/rainy1.png", "assets/images/windy1.png", "assets/images/snowy1.png"];
-    // Variable showImage will hold the setInterval when we start the slideshow
-    var showImage;
-    // Count will keep track of the index of the currently displaying picture.
-    var count = 0;
-    // This function will replace display whatever image it's given
-    // in the 'src' attribute of the img tag.
-    function displayImage() {
-      $("#image-holder").html("<img src=" + images[count] + " height='100px'>");
-    }
-    function nextImage() {
-      //Increment the count by 1.
-      count++;
+   function nextImage() {
+       //Increment the count by 1.
+       count++;
 
-      // TODO: Use a setTimeout to run displayImage after 1 second.
-      setTimeout(displayImage, 1000);
-      // TODO: If the count is the same as the length of the image array, reset the count to 0.
-      if (count === images.length) {
-        count = 0;
-      }
-    }
-    function startSlideshow() {
-      // TODO: Use showImage to hold the setInterval to run nextImage.
-      showImage = setInterval(nextImage, 1000);
-    }
-    startSlideshow();
-    //on click function for modals
-    $(document).ready(function(){
-      $("#modal1").modal();
-      $("#modal2").modal();
-    });
-
-    generateResult();
-
-    var images = ["assets/images/sunny1.png", "assets/images/rainy1.png", "assets/images/windy1.png", "assets/images/snowy1.png"];
-    // Variable showImage will hold the setInterval when we start the slideshow
-    var showImage;
-    // Count will keep track of the index of the currently displaying picture.
-    var count = 0;
-    // This function will replace display whatever image it's given
-    // in the 'src' attribute of the img tag.
-    function displayImage() {
-      $("#image-holder").html("<img src=" + images[count] + " height='100px'>");
-    }
-    function nextImage() {
-      //Increment the count by 1.
-      count++;
-
-      // TODO: Use a setTimeout to run displayImage after 1 second.
-      setTimeout(displayImage, 1000);
-      // TODO: If the count is the same as the length of the image array, reset the count to 0.
-      if (count === images.length) {
-        count = 0;
-      }
-    }
-
-    function mainTask(Humidity) {
-        //var wCondition = ["shower rain", "rain" , "thunderstorm" , "snow" , "mist" ,"clear sky", "few clouds","scattered clouds", "broken clouds"];
-        // API key for open weather
-        var code = "";
-
-        var testHuidity = Humidity;
-
-        var APIKey = "da2fd5126cda625878969d8aa3d25d93";
-
-        navigator.geolocation.getCurrentPosition(function(position) {
-
-          console.log(position);
-          var lat = position.coords.latitude;
-          var lng = position.coords.longitude;
-
-          // Here we are building the URL we need to query the database
-          var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey;
-          // Here we run our AJAX call to the OpenWeatherMap API
-          $.ajax({
-                  url: queryURL,
-                  method: "GET"
-              })
-              // We store all of the retrieved data inside of an object called "response"
-              .done(function(response) {
-
-                  if (response.main.humidity > testHuidity) {
-                      code = code + "H";
-                  } else {
-                      code = code + "X";
-                  }
-
-                  if (response.wind.speed > WindStandard) {
-                      code = code + "W";
-                  } else {
-                      code = code + "N";
-                  }
-
-                  if (response.main.temp < minTemperature) {
-                      code = code + "1";
-                  } else if (response.main.temp > maxTemperature) {
-                      code = code + "3";
-                  } else {
-                      code = code + "2";
-                  }
-
-                  database.ref("HairMan").set({
-                      humidity: response.main.humidity,
-                      wind: response.wind.speed,
-                      temperature: response.main.temp,
-                      codeMan: code,
-                      test: "hi"
-                  });
-                  console.log("code : " + code);
-                  // Log the data in the console as well
-                  console.log("Wind Speed: " + response.wind.speed);
-                  console.log("Humidity: " + response.main.humidity);
-                  console.log("Temperature (F): " + response.main.temp);
-                  window.location.href = 'result.html';
-              });
-          });
-        }
-});
-
-$(document).ready(function() {
-      $("#modal1").modal();
-      $("#modal2").modal();
-
-      $("#index-card").hide();
-      $("#index-card").show(1000);
-
-      $(document).on('click', '#answer3', function() {
-          console.log("Choose Your Hairstyle");
-          $(".chooseHair").html("What type of hair do you have?");
-
-          for (var i = 0; i < 3; i++) {
-              var space = $("<div>");
-              var letter = $("<p>");
-              var inputforP = hairQuestion[i];
-              letter.text(inputforP);
-              letter.addClass("col m12 center");
-              letter.addClass("materialboxed");
-              letter.addClass("ArrangeMan");
-              letter.css("fontSize", 20);
-              var imgFile = $("<img>");
-              imgFile.attr('src', img_url[i]);
-              imgFile.attr('height', '65px');
-              imgFile.attr('width', '50px');
-              imgFile.addClass(imgClass[i]);
-              space.append(imgFile);
-              space.addClass("SecondA");
-              space.append(letter);
-
-              $(".chooseHair").append(space);
-          }
-      });
-
-      $(document).on('click', '#answer4', function() {
-          console.log("I am so sorry....... ");
-          $(".chooseHair").html("I am so sorry but you are bald. Why should you need us?");
-      });
-
-      $(document).on('click', '.CurlyButton', function() {
-          mainTask(35);
-      });
-
-      $(document).on('click', '.wavyButton', function() {
-          mainTask(50);
-      });
-
-      $(document).on('click', '.StraightButton', function() {
-          mainTask(40);
-          /*
-           if( baldTest == false ){
-           mainTask(40);
-           baldTest == true;
-           }else{
-           alert("You are bald. So you don't need my advice! ");
-           }
-          */
-      });
-
-      var images = ["assets/images/sunny1.png", "assets/images/rainy1.png", "assets/images/windy1.png", "assets/images/snowy1.png"];
-      // Variable showImage will hold the setInterval when we start the slideshow
-      var showImage;
-      // Count will keep track of the index of the currently displaying picture.
-      var count = 0;
-      // This function will replace display whatever image it's given
-      // in the 'src' attribute of the img tag.
-      function displayImage() {
-          $("#image-holder").html("<img src=" + images[count] + " height='100px'>");
-      }
-
-      function nextImage() {
-          //Increment the count by 1.
-          count++;
-
-          // TODO: Use a setTimeout to run displayImage after 1 second.
-          setTimeout(displayImage, 1000);
-          // TODO: If the count is the same as the length of the image array, reset the count to 0.
-          if (count === images.length) {
-              count = 0;
-          }
-      }
+       // TODO: Use a setTimeout to run displayImage after 1 second.
+       setTimeout(displayImage, 1000);
+       // TODO: If the count is the same as the length of the image array, reset the count to 0.
+       if (count === images.length) {
+           count = 0;
+       }
+   }
 
       function startSlideshow() {
           // TODO: Use showImage to hold the setInterval to run nextImage.
