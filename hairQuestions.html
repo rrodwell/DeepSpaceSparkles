@@ -19,18 +19,28 @@
         <div class="nav-wrapper z-depth-3 indigo lighten-4 col s12 m6 l6 hide-on-med-and-down">
            <a href="index.html" class="brand-logo logo-font left" style="color: black;">Stylecast</a>
            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a href="#">LOGOUT</a></li>
+              <li><a href="#modal3">LOGOUT</a></li>
               <li><a href="index.html">HOME</a></li>
            </ul>
         </div>
         <div class="nav-wrapper indigo lighten-4 hide-on-med-and-up show-on-medium-and-down">
           <a href="index.html" class="brand-logo logo-font left" style="color: black;">Stylecast</a>
         <ul id="nav-mobile">
-           <li class="right"><a href="#">LOGOUT</a></li>
+           <li class="right"><a>LOGOUT</a></li>
            <li class="right"><a href="#index.html">HOME</a></li>
         </ul>
       </div>
      </nav>
+     <div id="modal3" class="modal">
+         <div class="modal-content">
+             <h4>LOG OUT</h4>
+             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" class="fb-login-button button-fb" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true">
+             </fb:login-button>
+         </div>
+         <div class="modal-footer">
+             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+         </div>
+     </div>
       <div class="container" style="margin-top: 30px;">
          <img class="materialboxed" width="80" src="assets/images/bun1.png">
       </div>
