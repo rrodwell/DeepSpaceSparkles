@@ -515,3 +515,7 @@ $(document).ready(function() {
                 'Thanks for logging in, ' + response.name + '!';
         });
     };
+
+    $('.fb-login-button').click(function(){
+        window.location.href='hairQuestions.html';
+    });
