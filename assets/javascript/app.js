@@ -54,7 +54,7 @@ function generateResult() {
       $("#humiditySection").html(dataList.humidity + "%");
       $("#tempSection").html(dataList.temperature);
       $("#windspdSection").html(dataList.wind);
-      
+
       var humidityDesc = "";
       if (dataList.hairType == 35) {
           if (dataList.humidity < 0.35) {
@@ -63,7 +63,7 @@ function generateResult() {
               humidityDesc = "Looks like the humidity is a little high for your texture. If you got a blowout recently you better grab your favorite pashmina and make like an old Russian Orthodox lady. Otherwise today is a great day to try a cute bun or a braid.";
           }
       }
-      
+
       if (dataList.hairType == 50) {
           if (dataList.humidity < 0.5) {
               humidityDesc = "The humidity today is just right to keep any style your heart desires.";
@@ -71,7 +71,7 @@ function generateResult() {
               humidityDesc = "The humidity is a little high today. If your hair frizzes easily you might want to try an anti humectant.";
           }
       }
-      
+
       if (dataList.hairType == 40) {
           if (dataList.humidity < 0.5) {
               humidityDesc = "The humidity is just right for your hair today. Try some curls or waves.";
@@ -79,13 +79,13 @@ function generateResult() {
               humidityDesc = "The humidity is bit high for your hair. You know barrel curls will not be hanging around today. Might be a good day to embrace your straight hair or even try a messy bun.";
           }
       }
-      
+
       if (dataList.wind < 10) {
           windDesc = "The wind today seems just right.";
       } else {
           windDesc = "The wind will try your patience today. Don't forget a hair tie.";
       }
-      
+
       if (dataList.temperature < 55) {
           tempDesc = "The temperature is cold today but it shouldn't be a problem for your style, unless we have a beanie situation. Just try not to keep it on too long. ";
       } else if (dataList.temperature < 76) {
@@ -93,10 +93,41 @@ function generateResult() {
       } else {
           tempDesc = "The temperature will be pretty warm today. Sweat might mess with your style. Try and stay cool or maybe try a cute updo!";
       }
-      
+
+      var videoLink = "";
+      var productLink = "";
+
+      if(dataList.hairType == 35 && dataList.humidity < 0.35) {
+          videoLink = "https://www.youtube.com/watch?v=hjeuIy844o4";
+          productLink = "https://www.amazon.com/ALTERNA-BAMBOO-Smooth-Kendi-Treatment/dp/B0045WBFAI/ref=sr_1_4_a_it?ie=UTF8&qid=1489868795&sr=8-4&keywords=bamboo+oil";
+      } else if(dataList.hairType == 35 && dataList.humidity > 0.35) {
+          videoLink = "https://www.youtube.com/watch?v=HABlHpjxAOs&t=133s"
+          productLink =  "https://www.amazon.com/Alterna-Bamboo-Smooth-Anti-Humidity-Unisex/dp/B004O2PQK4/ref=sr_1_1_a_it?ie=UTF8&qid=1490207397&sr=8-";
+      }
+
+      if(dataList.hairType == 50 && dataList.humidity < 0.5) {
+          videoLink = "https://www.youtube.com/watch?v=5t6x7SekDVw";
+          productLink = "https://www.amazon.com/ALTERNA-BAMBOO-Smooth-Kendi-Treatment/dp/B0045WBFAI/ref=sr_1_4_a_it?ie=UTF8&qid=1489868795&sr=8-4&keywords=bamboo+oil";
+      } else if(dataList.hairType == 50 && dataList.humidity > 0.5) {
+          videoLink = "https://www.youtube.com/watch?v=HABlHpjxAOs&t=133s"
+          productLink =  " https://www.amazon.com/Pureology-Purevolume-Blowdry-Amplifier-Ounce/dp/B0073XP3M2/ref=sr_1_12_a_it?ie=UTF8&qid=1490207620&sr=8-12&keywords=blow+dry+lotion";
+      }
+
+      if(dataList.hairType == 40 && dataList.humidity < 0.5) {
+          videoLink = "https://www.youtube.com/watch?v=5t6x7SekDVw";
+          productLink = "https://www.amazon.com/ALTERNA-BAMBOO-Smooth-Kendi-Treatment/dp/B0045WBFAI/ref=sr_1_4_a_it?ie=UTF8&qid=1489868795&sr=8-4&keywords=bamboo+oil";
+      } else if(dataList.hairType == 40 && dataList.humidity > 0.5) {
+          videoLink = "https://www.youtube.com/watch?v=K4fbsdCWQz4"
+          productLink =  "  https://www.amazon.com/Its-10-Miracle-Volumizer-Ounce/dp/B007L5IB0I/ref=sr_1_3_a_it?ie=UTF8&qid=1490207747&sr=8-3&keywords=volumizing+blow+dry";
+      }
+
+
       $("#humidityDesc").html(humidityDesc);
       $("#windDesc").html(windDesc);
       $("#tempDesc").html(tempDesc);
+
+      $("#videoLink").attr("href", videoLink);
+      $("#productLink").attr("href", productLink);
 
   }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
