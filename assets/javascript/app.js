@@ -412,7 +412,25 @@ $(document).ready(function() {
             }
         });
 });
+//------------ Validation for email ----------------//
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
 
+function validate() {
+  var email = $("#emailL").val();
+  if (validateEmail(email)) {
+    $("#check-mark").text("✓");
+    $("#check-mark").css("color", "green");
+  } else {
+    $("#check-mark").text("x");
+    $("#check-mark").css("color", "red");
+  }
+  return false;
+}
+
+$(".btn-go").on("click", validate);
 
     //--------------Google Sign In ------------------//
 
