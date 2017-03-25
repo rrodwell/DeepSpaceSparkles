@@ -45,3 +45,8 @@ a {
 .table-title {
     font-size: 30px;
 }
+
+.ArrangeMan {
+    position: relative;
+    margin-top: -10px;
+}
