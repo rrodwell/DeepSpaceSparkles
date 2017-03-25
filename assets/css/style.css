@@ -46,6 +46,7 @@ a {
     font-size: 30px;
 }
 
-span {
-    padding: 0 30px;
+.fwb span {
+    padding-left: 30px;
+    padding-right: 30px;
 }
