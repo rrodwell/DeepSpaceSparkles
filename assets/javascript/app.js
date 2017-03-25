@@ -412,25 +412,46 @@ $(document).ready(function() {
             }
         });
 });
-//------------ Validation for email ----------------//
-function validateEmail(email) {
+//------------ Validation for login ----------------//
+function validateEmailL(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
-function validate() {
+function validateL() {
   var email = $("#emailL").val();
-  if (validateEmail(email)) {
-    $("#check-mark").text("✓");
-    $("#check-mark").css("color", "green");
+  if (validateEmailL(email)) {
+    $("#login-mark").text("✓ This is valid.");
+    $("#login-mark").css("color", "green");
   } else {
-    $("#check-mark").text("x");
-    $("#check-mark").css("color", "red");
+    $("#login-mark").text("x  This is not a vaild email address.");
+    $("#login-mark").css("color", "red");
   }
   return false;
 }
 
-$(".btn-go").on("click", validate);
+$("#passwordL").on("click", validateL);
+
+//------------ Validation for resgister ----------------//
+function validateEmailR(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validateR() {
+  var email = $("#emailR").val();
+  if (validateEmailR(email)) {
+    $("#register-mark").text("✓ This is valid.");
+    $("#register-mark").css("color", "green");
+  } else {
+    $("#register-mark").text("x  This is not a vaild email address.");
+    $("#register-mark").css("color", "red");
+  }
+  return false;
+}
+
+$("#passwordR").on("click", validateR);
+
 
     //--------------Google Sign In ------------------//
 
