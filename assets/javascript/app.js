@@ -153,7 +153,7 @@ function generateResult() {
        var lng = position.coords.longitude;
 
        // Here we are building the URL we need to query the database
-       var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey+ "&units=imperial";
+       var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=" + APIKey+ "&units=imperial";
        // Here we run our AJAX call to the OpenWeatherMap API
        $.ajax({
                url: queryURL,
